@@ -11,9 +11,9 @@
 <p>
 
 ```
-kubectl get namespaces
 
-kubectl get ns
+
+
 ```
 </p>
 </details>
@@ -22,7 +22,7 @@ kubectl get ns
 <p>
 
 ```
-kubectl get po --all-namespaces
+
 ```
 </p>
 </details>
@@ -31,7 +31,7 @@ kubectl get po --all-namespaces
 <p>
 
 ```
-kubectl get po -n <namespace name>
+
 ```
 </p>
 </details>
@@ -40,7 +40,7 @@ kubectl get po -n <namespace name>
 <p>
 
 ```
-kubectl get svc -n <namespace name>
+
 ```
 </p>
 </details>
@@ -49,7 +49,7 @@ kubectl get svc -n <namespace name>
 <p>
 
 ```
-kubectl get pods -o=jsonpath="{.items[*]['metadata.name', 'metadata.namespace']}"
+
 ```
 </p>
 </details>
@@ -58,11 +58,7 @@ kubectl get pods -o=jsonpath="{.items[*]['metadata.name', 'metadata.namespace']}
 <p>
 
 ```
-// creating a pod
-kubectl run nginx --image=nginx --restart=Never
 
-// List the pod
-kubectl get po
 ```
 </p>
 </details>
@@ -72,28 +68,7 @@ kubectl get po
 <p>
 
 ```
-// get the yaml file with --dry-run flag
-kubectl run nginx --image=nginx --restart=Never --dry-run -o yaml > nginx-pod.yaml
 
-// cat nginx-pod.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  creationTimestamp: null
-  labels:
-    run: nginx
-  name: nginx
-spec:
-  containers:
-  - image: nginx
-    name: nginx
-    resources: {}
-  dnsPolicy: ClusterFirst
-  restartPolicy: Never
-status: {}
-
-// create a pod 
-kubectl create -f nginx-pod.yaml
 ```
 </p>
 </details>
@@ -103,7 +78,7 @@ kubectl create -f nginx-pod.yaml
 <p>
 
 ```
-kubectl get po nginx -o yaml
+
 ```
 </p>
 </details>
@@ -113,7 +88,7 @@ kubectl get po nginx -o yaml
 <p>
 
 ```
-kubectl get po nginx -o yaml --export
+
 ```
 </p>
 </details>
@@ -123,7 +98,7 @@ kubectl get po nginx -o yaml --export
 <p>
 
 ```
-kubectl describe pod nginx
+
 ```
 </p>
 </details>
@@ -133,9 +108,8 @@ kubectl describe pod nginx
 <p>
 
 ```
-kubectl delete po nginx
 
-kubectl delete -f nginx-pod.yaml
+
 ```
 </p>
 </details>
@@ -145,7 +119,7 @@ kubectl delete -f nginx-pod.yaml
 <p>
 
 ```
-kubectl delete po nginx --grace-period=0 --force
+
 ```
 </p>
 </details>
@@ -155,7 +129,7 @@ kubectl delete po nginx --grace-period=0 --force
 <p>
 
 ```
-kubectl run nginx --image=nginx:1.17.4 --restart=Never --port=80
+
 ```
 </p>
 </details>
@@ -165,14 +139,7 @@ kubectl run nginx --image=nginx:1.17.4 --restart=Never --port=80
 <p>
 
 ```
-kubectl set image pod/nginx nginx=nginx:1.15-alpine
 
-kubectl describe po nginx
-
-// another way it will open vi editor and change the version
-kubeclt edit po nginx
-
-kubectl describe po nginx
 ```
 </p>
 </details>
@@ -182,11 +149,7 @@ kubectl describe po nginx
 <p>
 
 ```
-kubectl set image pod/nginx nginx=nginx:1.17.1
 
-kubectl describe po nginx
-
-kubectl get po nginx -w # watch it
 ```
 </p>
 </details>
@@ -196,7 +159,7 @@ kubectl get po nginx -w # watch it
 <p>
 
 ```
-kubectl get po nginx -o jsonpath='{.spec.containers[].image}{"\n"}'
+
 ```
 </p>
 </details>
@@ -206,11 +169,7 @@ kubectl get po nginx -o jsonpath='{.spec.containers[].image}{"\n"}'
 <p>
 
 ```
-// creating a pod
-kubectl run nginx --image=nginx --restart=Never
 
-// exec into the pod
-kubectl exec -it nginx /bin/sh
 ```
 </p>
 </details>
@@ -220,7 +179,7 @@ kubectl exec -it nginx /bin/sh
 <p>
 
 ```
-kubectl get po nginx -o wide
+
 ```
 </p>
 </details>
@@ -229,9 +188,7 @@ kubectl get po nginx -o wide
 <p>
 
 ```
-kubectl run busybox --image=busybox --restart=Never -- ls
 
-kubectl logs busybox
 ```
 </p>
 </details>
@@ -241,7 +198,7 @@ kubectl logs busybox
 <p>
 
 ```
-kubectl logs busybox -p
+
 ```
 </p>
 </details>
@@ -251,7 +208,7 @@ kubectl logs busybox -p
 <p>
 
 ```
-kubectl run busybox --image=busybox --restart=Never -- /bin/sh -c "sleep 3600"
+
 ```
 </p>
 </details>
@@ -261,10 +218,7 @@ kubectl run busybox --image=busybox --restart=Never -- /bin/sh -c "sleep 3600"
 <p>
 
 ```
-kubectl get po nginx -o wide
 
-// check the connection
-kubectl exec -it busybox -- wget -o- <IP Address>
 ```
 </p>
 </details>
@@ -274,9 +228,7 @@ kubectl exec -it busybox -- wget -o- <IP Address>
 <p>
 
 ```
-kubectl run busybox --image=nginx --restart=Never -it -- echo "How are you"
 
-kubectl delete po busybox
 ```
 </p>
 </details>
@@ -286,8 +238,7 @@ kubectl delete po busybox
 <p>
 
 ```
-// notice the --rm flag
-kubectl run busybox --image=nginx --restart=Never -it --rm -- echo "How are you"
+
 ```
 </p>
 </details>
@@ -297,13 +248,7 @@ kubectl run busybox --image=nginx --restart=Never -it --rm -- echo "How are you"
 <p>
 
 ```
-// create a pod
-kubectl run nginx --image=nginx --restart=Never --port=80
 
-// List the pod with different verbosity
-kubectl get po nginx --v=7
-kubectl get po nginx --v=8
-kubectl get po nginx --v=9
 ```
 </p>
 </details>
@@ -313,7 +258,7 @@ kubectl get po nginx --v=9
 <p>
 
 ```
-kubectl get po -o=custom-columns="POD_NAME:.metadata.name, POD_STATUS:.status.containerStatuses[].state"
+
 ```
 </p>
 </details>
@@ -323,7 +268,7 @@ kubectl get po -o=custom-columns="POD_NAME:.metadata.name, POD_STATUS:.status.co
 <p>
 
 ```
-kubectl get pods --sort-by=.metadata.name
+
 ```
 </p>
 </details>
@@ -333,7 +278,7 @@ kubectl get pods --sort-by=.metadata.name
 <p>
 
 ```
-kubectl get pods--sort-by=.metadata.creationTimestamp
+
 ```
 </p>
 </details>
