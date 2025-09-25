@@ -11,8 +11,8 @@
 <p>
 
 ```
-
-
+k get ns
+k get -A ns
 
 ```
 </p>
@@ -22,7 +22,7 @@
 <p>
 
 ```
-
+k get po -A
 ```
 </p>
 </details>
@@ -31,7 +31,7 @@
 <p>
 
 ```
-
+k get po -n <namespace name>
 ```
 </p>
 </details>
