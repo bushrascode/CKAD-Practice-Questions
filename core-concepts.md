@@ -40,7 +40,7 @@ k get po -n <namespace name>
 <p>
 
 ```
-
+k get svc -n <namespace name>
 ```
 </p>
 </details>
